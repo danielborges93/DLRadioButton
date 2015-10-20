@@ -158,9 +158,19 @@ static NSString *const kGeneratedIconName = @"Generated Icon";
 #pragma mark - UIControl
 
 - (void)setSelected:(BOOL)selected {
+    if (selected) {
+        [self.delegate radioButtonWillSelect:self];
+    } else {
+        [self.delegate radioButtonWillDeselect:self];
+    }
+    
     [super setSelected:selected];
+    
     if (selected) {
         [self deselectOtherButtons];
+        [self.delegate radioButtonDidSelect:self];
+    } else {
+        [self.delegate radioButtonDidDeselect:self];
     }
 }
 

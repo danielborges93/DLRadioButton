@@ -1,10 +1,24 @@
 #import <UIKit/UIKit.h>
 
+@class DLRadioButton;
+
+@protocol DLRadioButtonDelegate <NSObject>
+
+@optional
+- (void)radioButtonWillSelect:(DLRadioButton *)radioButton;
+- (void)radioButtonWillDeselect:(DLRadioButton *)radioButton;
+- (void)radioButtonDidSelect:(DLRadioButton *)radioButton;
+- (void)radioButtonDidDeselect:(DLRadioButton *)radioButton;
+
+@end
+
 /**
  A hightly customizable Radio Button for iOS.
 */
 IB_DESIGNABLE
 @interface DLRadioButton : UIButton
+
+@property (strong) id<DLRadioButtonDelegate> delegate;
 
 /**@name Properties*/
 /**
